@@ -1,4 +1,4 @@
-﻿@model Breeze.Models.Game
+﻿@model IEnumerable<Breeze.Models.Game>
 
 <html>
 <head>
@@ -7,8 +7,20 @@
 <body>
     <h2>Details</h2>
     <hr />
-    @Html.DisplayNameFor(model => model.Description): @Html.DisplayFor(model => model.Description)
-    @Html.DropDownList("CommentId")
+    
+@foreach (var game in Model)
+{
+    <h2>@Html.DisplayFor(x => game.Name)</h2>
+    <h3>@Html.DisplayFor(x => game.Description)</h3>
+
+    @foreach (var comment in game.Comments)
+    {
+        <li>UserName: @Html.DisplayFor(x => comment.UserName)</li>
+        <li>Comment: @Html.DisplayFor(x => comment.CommentDescription)</li>
+        <hr />
+    }
+}
     <p>@Html.ActionLink("Back to list", "Index")</p>
+
 </body>
 </html>

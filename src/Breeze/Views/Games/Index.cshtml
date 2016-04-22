@@ -13,6 +13,7 @@
             @foreach (var listGame in Model)
             {
                 <li>@Html.DisplayFor(modelItem => listGame.Name) | @Html.ActionLink("Details", "Details", new { id = listGame.GameId }) | @Html.ActionLink("Edit", "Edit", new { id = listGame.GameId })</li>
+                
                 <li>
                     Delete @using (Html.BeginForm("Delete", "Games", new { id = listGame.GameId }))
                     {

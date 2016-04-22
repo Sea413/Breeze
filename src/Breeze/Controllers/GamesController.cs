@@ -14,13 +14,13 @@ namespace Breeze.Controllers
         private BreezeContext db = new BreezeContext();
         public IActionResult Index()
         {
+
             return View(db.Games.ToList());
         }
         public IActionResult Details(int id)
         {
-            var thisGame = db.Games.FirstOrDefault(games => games.GameId == id);
-            ViewBag.CommentId = new SelectList(db.Comments, "CommentId", "CommentDescription");
-            return View(thisGame);
+            var gameList = db.Games.Where(x => x.GameId == id).Include(game => game.Comments).ToList();
+            return View(gameList);
         }
         public IActionResult Create()
         {
