@@ -1,9 +1,11 @@
-﻿@model IEnumerable<Breeze.Models.Game>
+﻿@{
+    ViewData["Title"] = "To Do List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model IEnumerable<Breeze.Models.Game>
 
-    <html>
-    <head>
-        <title>Breeze Games!</title>
-    </head>
+<link rel="stylesheet" type="text/css" href="~/css/styles.css" />
+
     <body>
         <h2>Game List</h2>
         <h4>@Html.DisplayNameFor(model => model.Description)</h4>
@@ -20,5 +22,3 @@
             }
         </ul>
         <p>@Html.ActionLink("Add a new Game", "Create")</p>
-    </body>
-</html>
