@@ -5,9 +5,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
 using Breeze.Models;
 using Microsoft.Data.Entity;
-
-// For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace Breeze.Controllers
 {
     public class GamesController : Controller
@@ -51,9 +48,10 @@ namespace Breeze.Controllers
         public IActionResult Delete(int id)
         {
             var thisGame = db.Games.FirstOrDefault(x => x.GameId == id);
-            db.Games.Remove(thisGame);
+            db.Armies.Remove(thisGame);
             db.SaveChanges();
             return RedirectToAction("Index");
-        }
+        
+     }
     }
-}
+   }
