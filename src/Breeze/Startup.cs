@@ -15,7 +15,7 @@ namespace Breeze
     public class Startup
     {
         public IConfigurationRoot Configuration { get; set; }
-        public Startup()
+        public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json");
