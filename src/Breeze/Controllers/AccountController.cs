@@ -65,7 +65,7 @@ namespace Breeze.Controllers
             }
             else
             {
-                return View();
+                return View("Create", "Games");
             }
         }
 

@@ -1,33 +1,37 @@
 ﻿@{
-    ViewData["Title"] = "To Do List";
+    ViewData["Title"] = "Question";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@model IEnumerable<Breeze.Models.Game>
+
 @using System.Security.Claims
 
-<h2>Here is your list of tasks, @User.GetUserName()</h2>
+@model IEnumerable<Breeze.Models.Game>
+
+<h2>The list of Questions:</h2>
 <hr />
 
 @if (Model.Any())
 {
+
+
     <ul>
-        @foreach (var listGame in Model)
+        @foreach (var listItem in Model)
         {
-            <li>@Html.DisplayFor(modelItem => listGame.Name) | @Html.ActionLink("Details", "Details", new { id = listGame.GameId }) | @Html.ActionLink("Edit", "Edit", new { id = listGame.GameId })</li>
+            <li>@Html.DisplayFor(modelItem => listItem.Name) | @Html.ActionLink("Details", "Details", new { id = listItem.QuestionId }) | @Html.ActionLink("Edit", "Edit", new { id = listItem.QuestionId })</li>
 
             <li>
-                @using (Html.BeginForm("Delete", "Games", new { id = listGame.GameId }))
+                Delete @using (Html.BeginForm("Delete", "Questions", new { id = listItem.GameId }))
                     {
                     <input type="submit" value="Delete" />
                 }
             </li>
+            <hr />
         }
     </ul>
 }
 else
 {
-    <p>No tasks have been added yet!</p>
+    <p>No Questions have been added yet!</p>
 }
 
-@Html.ActionLink("Create new", "Create")
-
+| @Html.ActionLink("Create new", "Create") | @Html.ActionLink("Ready to log out?", "index", "Account") |

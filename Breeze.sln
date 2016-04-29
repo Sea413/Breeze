@@ -7,6 +7,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E9081611-260
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Breeze", "src\Breeze\Breeze.xproj", "{0F2E4A87-B21D-4E44-8701-99F23AE4944D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{D59A356E-E5C9-4723-8274-7626215E2140}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Breeze.Tests", "Breeze.Tests\Breeze.Tests.xproj", "{0DD69246-61B7-4252-9C0A-38441EA3518A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,11 +21,16 @@ Global
 		{0F2E4A87-B21D-4E44-8701-99F23AE4944D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F2E4A87-B21D-4E44-8701-99F23AE4944D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F2E4A87-B21D-4E44-8701-99F23AE4944D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0DD69246-61B7-4252-9C0A-38441EA3518A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DD69246-61B7-4252-9C0A-38441EA3518A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DD69246-61B7-4252-9C0A-38441EA3518A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DD69246-61B7-4252-9C0A-38441EA3518A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{0F2E4A87-B21D-4E44-8701-99F23AE4944D} = {E9081611-260E-43E9-8475-75695EF27067}
+		{0DD69246-61B7-4252-9C0A-38441EA3518A} = {D59A356E-E5C9-4723-8274-7626215E2140}
 	EndGlobalSection
 EndGlobal

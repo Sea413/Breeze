@@ -15,10 +15,7 @@ namespace Breeze.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private BreezeContext db = new BreezeContext();
 
-        public GamesController(
-            UserManager<ApplicationUser> userManager,
-            BreezeContext db
-        )
+        public GamesController(UserManager<ApplicationUser> userManager, BreezeContext db)
         {
             _userManager = userManager;
             _db = db;
@@ -50,23 +47,23 @@ namespace Breeze.Controllers
         }
         public IActionResult Edit(int id)
         {
-            var thisGame = db.Games.FirstOrDefault(games => games.GameId == id);
+            var thisGame = _db.Games.FirstOrDefault(games => games.GameId == id);
             return View(thisGame);
         }
 
         [HttpPost]
         public IActionResult Edit(Game game)
         {
-            db.Entry(game).State = EntityState.Modified;
-            db.SaveChanges();
+            _db.Entry(game).State = EntityState.Modified;
+            _db.SaveChanges();
             return RedirectToAction("Index");
         }
         [HttpPost, ActionName("Delete")]
         public IActionResult Delete(int id)
         {
             var thisGame = db.Games.FirstOrDefault(x => x.GameId == id);
-            db.Games.Remove(thisGame);
-            db.SaveChanges();
+            _db.Games.Remove(thisGame);
+            _db.SaveChanges();
             return RedirectToAction("Index");
         
      }
