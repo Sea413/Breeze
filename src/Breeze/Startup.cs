@@ -34,22 +34,25 @@ namespace Breeze
                 .AddDbContext<BreezeContext>(options =>
                     options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]));
             services.AddIdentity<ApplicationUser, IdentityRole>()
-               .AddEntityFrameworkStores<ApplicationDbContext>()
+               .AddEntityFrameworkStores<BreezeContext>()
                .AddDefaultTokenProviders();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app)
         {
+
             app.UseStaticFiles();
-            app.UseIISPlatformHandler();
+            app.UseIdentity();
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Account}/{action=Index}/{id?}");
             });
- 
+
+            app.UseIISPlatformHandler();
 
             app.Run(async (context) =>
             {

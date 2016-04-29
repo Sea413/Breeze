@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Breeze.Models
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class BreezeDbContext : IdentityDbContext<ApplicationUser>
     {
         protected override void OnModelCreating(ModelBuilder builder)
         {

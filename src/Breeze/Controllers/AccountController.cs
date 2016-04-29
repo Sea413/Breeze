@@ -1,4 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Identity;
 using Breeze.Models;
@@ -8,20 +11,25 @@ namespace Breeze.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly ApplicationDbContext _db;
+
+        private readonly BreezeContext _db;
+
         private readonly UserManager<ApplicationUser> _userManager;
+
         private readonly SignInManager<ApplicationUser> _signInManager;
 
-        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, ApplicationDbContext db)
+        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, BreezeContext db)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _db = db;
         }
+
         public IActionResult Index()
         {
             return View();
         }
+
         public IActionResult Register()
         {
             return View();
@@ -41,6 +49,7 @@ namespace Breeze.Controllers
                 return View();
             }
         }
+
         public IActionResult Login()
         {
             return View();
@@ -59,6 +68,7 @@ namespace Breeze.Controllers
                 return View();
             }
         }
+
         [HttpPost]
         public async Task<IActionResult> LogOff()
         {
