@@ -1,17 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Threading.Tasks;
+using System.Security.Claims;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
+using Microsoft.AspNet.Authorization;
+using Microsoft.AspNet.Identity;
 using Breeze.Models;
 using Microsoft.Data.Entity;
-using Microsoft.AspNet.Mvc.Rendering;
 
 namespace Breeze.Controllers
 {
     public class GamesController : Controller
     {
+        private readonly ApplicationDbContext _db;
+        private readonly UserManager<ApplicationUser> _userManager;
         private BreezeContext db = new BreezeContext();
+
+        public GamesController(
+            UserManager<ApplicationUser> userManager,
+            ApplicationDbContext db
+        )
+        {
+            _userManager = userManager;
+            _db = db;
+        }
+
         public IActionResult Index()
         {
 
@@ -28,10 +40,12 @@ namespace Breeze.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Game game)
+        public async Task<IActionResult> Create(Game game)
         {
-            db.Games.Add(game);
-            db.SaveChanges();
+            var currentUser = await _userManager.FindByIdAsync(User.GetUserId());
+            game.User = currentUser;
+            _db.Games.Add(game);
+            _db.SaveChanges();
             return RedirectToAction("Index");
         }
         public IActionResult Edit(int id)
