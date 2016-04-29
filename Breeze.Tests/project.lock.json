@@ -14,8 +14,10 @@
           "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-rc1-final",
           "Microsoft.AspNet.IISPlatformHandler": "1.0.0-rc1-final",
           "Microsoft.AspNet.Mvc": "6.0.0-rc1-final",
+          "Microsoft.AspNet.Mvc.Core": "6.0.0-rc1-final",
           "Microsoft.AspNet.Server.Kestrel": "1.0.0-rc1-final",
-          "Microsoft.AspNet.StaticFiles": "1.0.0-rc1-final"
+          "Microsoft.AspNet.StaticFiles": "1.0.0-rc1-final",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc1-final"
         }
       },
       "EntityFramework.Commands/7.0.0-rc1-final": {
@@ -1924,8 +1926,10 @@
           "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-rc1-final",
           "Microsoft.AspNet.IISPlatformHandler": "1.0.0-rc1-final",
           "Microsoft.AspNet.Mvc": "6.0.0-rc1-final",
+          "Microsoft.AspNet.Mvc.Core": "6.0.0-rc1-final",
           "Microsoft.AspNet.Server.Kestrel": "1.0.0-rc1-final",
-          "Microsoft.AspNet.StaticFiles": "1.0.0-rc1-final"
+          "Microsoft.AspNet.StaticFiles": "1.0.0-rc1-final",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc1-final"
         }
       },
       "EntityFramework.Commands/7.0.0-rc1-final": {
@@ -3837,8 +3841,10 @@
           "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-rc1-final",
           "Microsoft.AspNet.IISPlatformHandler": "1.0.0-rc1-final",
           "Microsoft.AspNet.Mvc": "6.0.0-rc1-final",
+          "Microsoft.AspNet.Mvc.Core": "6.0.0-rc1-final",
           "Microsoft.AspNet.Server.Kestrel": "1.0.0-rc1-final",
-          "Microsoft.AspNet.StaticFiles": "1.0.0-rc1-final"
+          "Microsoft.AspNet.StaticFiles": "1.0.0-rc1-final",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc1-final"
         }
       },
       "EntityFramework.Commands/7.0.0-rc1-final": {

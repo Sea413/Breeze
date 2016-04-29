@@ -11,24 +11,27 @@ namespace Breeze.Controllers
 {
     public class GamesController : Controller
     {
-        private readonly BreezeContext _db;
+        private readonly BreezeDbContext _db;
         private readonly UserManager<ApplicationUser> _userManager;
-        private BreezeContext db = new BreezeContext();
+        private readonly SignInManager<ApplicationUser> _signInManager;
+        private BreezeDbContext db = new BreezeDbContext();
 
-        public GamesController(UserManager<ApplicationUser> userManager, BreezeContext db)
+        public GamesController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, BreezeDbContext db)
         {
             _userManager = userManager;
+            _signInManager = signInManager;
             _db = db;
         }
 
         public async Task<IActionResult> Index()
         {
             var currentUser = await _userManager.FindByIdAsync(User.GetUserId());
-            return View(_db.Games.Where(x => x.User.Id == currentUser.Id));
+            return View(_db.Games.ToList());
         }
         public IActionResult Details(int id)
         {
-            var gameList = db.Games.Where(x => x.GameId == id).Include(game => game.Comments).ToList();
+            var gameList = _db.Games.Where(x => x.GameId == id).Include(game => game.Comments).ToList();
+            ViewBag.GameId = id;
             return View(gameList);
         }
         public IActionResult Create()

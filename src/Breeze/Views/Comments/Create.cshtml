@@ -1,0 +1,17 @@
+﻿@model Breeze.Models.Comment
+
+<h2>Answer this question!</h2>
+<hr />
+@using (Html.BeginForm())
+{
+    @Html.Hidden("GameId")
+    @Html.LabelFor(model => model.UserName)
+    @Html.EditorFor(model => model.UserName)
+
+    @Html.LabelFor(model => model.CommentDescription)
+    @Html.EditorFor(model => model.CommentDescription)
+
+    <input type="submit" value="Create" />
+}
+
+@Html.ActionLink("Back to List", "Index", "Games")

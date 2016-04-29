@@ -13,6 +13,8 @@
     <h2>@Html.DisplayFor(x => game.Name)</h2>
     <h3>@Html.DisplayFor(x => game.Description)</h3>
 
+    @Html.ActionLink("New Comment", "Create", "Comments", new { id = game.GameId })
+
     @foreach (var comment in game.Comments)
     {
         <li>UserName: @Html.DisplayFor(x => comment.UserName)</li>

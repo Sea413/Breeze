@@ -13,5 +13,6 @@ namespace Breeze.Models
         public string CommentDescription { get; set; }
         public int GameId { get; set; }
         public virtual Game Game { get; set; }
+        public virtual ApplicationUser User { get; set; }
     }
 }

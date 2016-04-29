@@ -12,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Data.Entity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Breeze.Models;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace Breeze
 {
@@ -31,10 +32,10 @@ namespace Breeze
 
             services.AddEntityFramework()
                 .AddSqlServer()
-                .AddDbContext<BreezeContext>(options =>
+                .AddDbContext<BreezeDbContext>(options =>
                     options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]));
             services.AddIdentity<ApplicationUser, IdentityRole>()
-               .AddEntityFrameworkStores<BreezeContext>()
+               .AddEntityFrameworkStores<BreezeDbContext>()
                .AddDefaultTokenProviders();
         }
 

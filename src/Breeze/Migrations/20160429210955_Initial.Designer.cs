@@ -5,12 +5,13 @@ using Microsoft.Data.Entity.Metadata;
 using Microsoft.Data.Entity.Migrations;
 using Breeze.Models;
 
-namespace breeze.Migrations
+namespace Breeze.Migrations
 {
     [DbContext(typeof(BreezeDbContext))]
-    partial class BreezeContextModelSnapshot : ModelSnapshot
+    [Migration("20160429210955_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.0-rc1-16348")
@@ -72,8 +73,6 @@ namespace breeze.Migrations
                     b.Property<string>("CommentDescription");
 
                     b.Property<int>("GameId");
-
-                    b.Property<string>("UserId");
 
                     b.Property<string>("UserName");
 
@@ -185,10 +184,6 @@ namespace breeze.Migrations
                     b.HasOne("Breeze.Models.Game")
                         .WithMany()
                         .HasForeignKey("GameId");
-
-                    b.HasOne("Breeze.Models.ApplicationUser")
-                        .WithMany()
-                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Breeze.Models.Game", b =>

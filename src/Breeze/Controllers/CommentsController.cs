@@ -1,63 +1,49 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Threading.Tasks;
+using System.Security.Claims;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
+using Microsoft.AspNet.Authorization;
+using Microsoft.AspNet.Identity;
 using Breeze.Models;
 using Microsoft.Data.Entity;
-using Microsoft.AspNet.Mvc.Rendering;
+
+// For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Breeze.Controllers
 {
-    public class CommentController : Controller
+    [Authorize]
+    public class CommentsController : Controller
     {
-        private BreezeContext db = new BreezeContext();
+        private readonly BreezeDbContext _db;
+        private readonly UserManager<ApplicationUser> _userManager;
+
+        public CommentsController(
+            UserManager<ApplicationUser> userManager,
+            BreezeDbContext db
+        )
+        {
+            _userManager = userManager;
+            _db = db;
+        }
+
         public IActionResult Index()
         {
-            return View(db.Comments.Include(comments => comments.Game).ToList());
-        }
-        public IActionResult Details(int id)
-        {
-            var thisComment = db.Comments.FirstOrDefault(comments => comments.CommentId == id);
-            return View(thisComment);
-        }
-        public ActionResult Create()
-        {
-            ViewBag.GameId = new SelectList(db.Games, "GameId", "Name");
             return View();
         }
+        public IActionResult Create(int id)
+        {
+            ViewData["GameId"] = id;
+            return View();
+        }
+
         [HttpPost]
-        public ActionResult Create(Comment comment)
+        public async Task<IActionResult> Create(Comment comment)
         {
-            db.Comments.Add(comment);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-        public ActionResult Edit(int id)
-        {
-            var thisComment = db.Comments.FirstOrDefault(comments => comments.CommentId == id);
-            ViewBag.CategoryId = new SelectList(db.Games, "GameId", "Name");
-            return View(thisComment);
-        }
-        [HttpPost]
-        public ActionResult Edit(Comment comment)
-        {
-            db.Entry(comment).State = EntityState.Modified;
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-        public ActionResult Delete(int id)
-        {
-            var thisComment = db.Comments.FirstOrDefault(comments => comments.CommentId == id);
-            return View(thisComment);
-        }
-        [HttpPost, ActionName("Delete")]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            var thisComment = db.Comments.FirstOrDefault(comments => comments.CommentId == id);
-            db.Comments.Remove(thisComment);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            var currentUser = await _userManager.FindByIdAsync(User.GetUserId());
+            comment.User = currentUser;
+            _db.Comments.Add(comment);
+            _db.SaveChanges();
+            return RedirectToAction("Details", "Games");
         }
     }
 }
